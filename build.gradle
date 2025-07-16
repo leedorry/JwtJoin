@@ -26,8 +26,6 @@ dependencies {
     // jdbc
     implementation 'org.springframework:spring-jdbc'
     runtimeOnly 'mysql:mysql-connector-java:8.0.33'
-    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
 
     // lombok
