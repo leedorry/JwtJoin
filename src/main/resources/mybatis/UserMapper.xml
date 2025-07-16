@@ -5,11 +5,34 @@
 
 <mapper namespace="io.github.jhlee.Mapper.UserMapper">
 
-    <select id="readList" resultType="io.github.jhlee.Model.User">
-        <![CDATA[
-            SELECT id, email, name, age
-            FROM jwt_join.user
-        ]]>
+    <insert id="create" parameterType="User">
+        INSERT INTO (id, email, password, name, age)
+        VALUES (#{id}, #{email}, #{password}, #{name}, #{age})
+    </insert>
+
+    <select id="readList" resultType="User">
+        SELECT id, email, name, age
+        FROM user
     </select>
+
+    <select id="read" parameterType="String" resultType="User">
+        SELECT id, password, email, name, age
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <update id="update" parameterType="User">
+        UPDATE user
+        SET 1=1
+            <if test="email != null">, email = #{email}</if>
+            <if test="password != null">, password = #{password}</if>
+            <if test="name != null">, name = #{name}</if>
+            <if test="age != null">, age = #{age}</if>
+    </update>
+
+    <delete id="delete" parameterType="String">
+        DELETE FROM user
+        WHERE id = #{id}
+    </delete>
 
 </mapper>

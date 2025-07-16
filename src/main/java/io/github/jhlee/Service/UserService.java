@@ -1,26 +1,43 @@
 package io.github.jhlee.Service;
 
 import io.github.jhlee.Mapper.UserMapper;
-import io.github.jhlee.Response.Result;
+import io.github.jhlee.Model.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class UserService {
+
     private final UserMapper userMapper;
 
-    public Result readList() {
+    public int create(User user) {
+        log.info("create; user={}", user);
+        return userMapper.create(user);
+    }
+
+    public User read(String id) {
+        log.info("read; id={}", id);
+        return userMapper.read(id);
+    }
+
+    public List<User> readList() {
         log.info("readList;");
+        return userMapper.readList();
+    }
 
-        Result result = new Result();
-        result.setCode(200);
-        result.setMessage("success");
-        result.setPayload(userMapper.readList());
+    public int update(User user) {
+        log.info("update; user={}", user);
+        return userMapper.update(user);
+    }
 
-        return result;
+    public int delete(String id) {
+        log.info("delete; id={}", id);
+        return userMapper.delete(id);
     }
 
 }
