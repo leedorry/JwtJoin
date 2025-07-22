@@ -1,4 +1,4 @@
-package io.github.jhlee.Response;
+package io.github.jhlee.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

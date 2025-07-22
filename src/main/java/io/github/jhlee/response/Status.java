@@ -1,4 +1,4 @@
-package io.github.jhlee.Response;
+package io.github.jhlee.response;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

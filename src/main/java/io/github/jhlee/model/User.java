@@ -1,4 +1,4 @@
-package io.github.jhlee.Model;
+package io.github.jhlee.model;
 
 import lombok.Data;
 
