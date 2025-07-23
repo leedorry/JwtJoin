@@ -1,7 +1,7 @@
-package io.github.jhlee.Service;
+package io.github.jhlee.service;
 
-import io.github.jhlee.Mapper.UserMapper;
-import io.github.jhlee.Model.User;
+import io.github.jhlee.mapper.UserMapper;
+import io.github.jhlee.model.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

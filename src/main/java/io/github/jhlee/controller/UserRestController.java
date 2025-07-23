@@ -1,9 +1,9 @@
-package io.github.jhlee.Controller;
+package io.github.jhlee.controller;
 
-import io.github.jhlee.Model.User;
-import io.github.jhlee.Response.ApiResponse;
-import io.github.jhlee.Response.Status;
-import io.github.jhlee.Service.UserService;
+import io.github.jhlee.model.User;
+import io.github.jhlee.response.ApiResponse;
+import io.github.jhlee.response.Status;
+import io.github.jhlee.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

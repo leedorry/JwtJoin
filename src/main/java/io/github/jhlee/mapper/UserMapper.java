@@ -1,6 +1,6 @@
-package io.github.jhlee.Mapper;
+package io.github.jhlee.mapper;
 
-import io.github.jhlee.Model.User;
+import io.github.jhlee.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
