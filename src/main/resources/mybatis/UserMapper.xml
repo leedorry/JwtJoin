@@ -6,8 +6,18 @@
 <mapper namespace="io.github.jhlee.mapper.UserMapper">
 
     <insert id="create" parameterType="User">
-        INSERT INTO (id, email, password, name, age)
-        VALUES (#{id}, #{email}, #{password}, #{name}, #{age})
+        INSERT INTO user ( id
+                    , email
+                    , password
+                    , name
+                    <if test="age != 0">, age</if>
+        ) VALUES (
+                      #{id}
+                    , #{email}
+                    , #{password}
+                    , #{name}
+                    <if test="age != 0">, #{age}</if>
+        )
     </insert>
 
     <select id="readList" resultType="User">
@@ -21,7 +31,7 @@
         WHERE id = #{id}
     </select>
 
-    <select id="checkByLogin" parameterType="io.github.jhlee.dto.LoginRequest" resultType="Boolean">
+    <select id="findByUser" parameterType="io.github.jhlee.dto.UserRequest" resultType="Boolean">
         SELECT COUNT(id)
         FROM user
         WHERE id = #{id} AND password = #{password}

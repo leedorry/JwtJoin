@@ -1,11 +1,13 @@
 package io.github.jhlee.controller;
 
+import io.github.jhlee.dto.UserRequest;
 import io.github.jhlee.model.User;
 import io.github.jhlee.response.ApiResponse;
 import io.github.jhlee.response.Status;
 import io.github.jhlee.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -32,7 +34,7 @@ public class UserRestController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "CREATED")
     })
     @PostMapping("")
-    public ResponseEntity<ApiResponse<Integer>> create(@RequestBody User user) {
+    public ResponseEntity<ApiResponse<Integer>> create(@Valid @RequestBody UserRequest user) {
         log.info("create; user={}", user);
 
         int created = userService.create(user);
