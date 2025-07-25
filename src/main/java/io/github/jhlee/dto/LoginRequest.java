@@ -1,15 +1,15 @@
 package io.github.jhlee.dto;
 
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
 public class LoginRequest {
 
-    @ApiParam("사용자 아이디")
+    @Schema(description = "아이디", example = "lee")
     String id;
 
-    @ApiParam("비밀번호")
+    @Schema(description = "비밀번호", example = "abc@123")
     String password;
 
 }
