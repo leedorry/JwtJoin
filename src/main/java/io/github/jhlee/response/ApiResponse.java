@@ -26,4 +26,9 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> error(Status status) {
         return new ApiResponse<>(status, null);
     }
+
+    public static <T> ApiResponse<T> error(Status status, T data) {
+        return new ApiResponse<>(status, data);
+    }
+
 }
