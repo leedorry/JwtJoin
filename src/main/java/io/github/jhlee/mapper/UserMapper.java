@@ -1,6 +1,5 @@
 package io.github.jhlee.mapper;
 
-import io.github.jhlee.dto.UserRequest;
 import io.github.jhlee.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,7 +11,7 @@ public interface UserMapper {
     int create(User user);
     List<User> readList();
     User read(String id);
-    Boolean findByUser(UserRequest user);
+    int findById(String id);
     int update(User user);
     int delete(String id);
 

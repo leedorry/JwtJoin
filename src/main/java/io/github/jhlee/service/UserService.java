@@ -24,10 +24,10 @@ public class UserService {
     public int create(UserRequest request) {
         log.info("create; request={}", request);
 
-        // @TODO : 1. Valid
-
-        // @TODO : 2. findById
-        // @TODO : 2-1. 중복된 아이디가 있다면 예외 처리
+        int isExistId = userMapper.findById(request.getId());
+        if (isExistId > 0) {
+            throw new IllegalArgumentException("중복된 id가 존재합니다.");
+        }
 
         User user = modelMapper.map(request, User.class);
 
@@ -45,11 +45,6 @@ public class UserService {
     public List<User> readList() {
         log.info("readList;");
         return userMapper.readList();
-    }
-
-    public boolean findByUser(UserRequest user) {
-        log.info("findByUser; user={}", user);
-        return userMapper.findByUser(user);
     }
 
     public int update(User user) {

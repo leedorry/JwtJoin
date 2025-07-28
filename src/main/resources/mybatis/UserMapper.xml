@@ -31,10 +31,10 @@
         WHERE id = #{id}
     </select>
 
-    <select id="findByUser" parameterType="io.github.jhlee.dto.UserRequest" resultType="Boolean">
+    <select id="findById" parameterType="String" resultType="Integer">
         SELECT COUNT(id)
         FROM user
-        WHERE id = #{id} AND password = #{password}
+        WHERE id = #{id}
     </select>
 
     <update id="update" parameterType="User">
