@@ -1,7 +1,13 @@
 package io.github.jhlee.config;
 
+import io.github.jhlee.response.FailureHandler;
+import io.github.jhlee.response.SuccessHandler;
+import io.github.jhlee.service.LoginService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -11,7 +17,12 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final LoginService loginService;
+    private final SuccessHandler successHandler;
+    private final FailureHandler failureHandler;
 
     /**
      *  PasswordEncoder
@@ -36,20 +47,33 @@ public class SecurityConfig {
                 // 로그인
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/index", true)
-                        .failureUrl("/login?error")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .successHandler(successHandler)
+                        .failureHandler(failureHandler)
                         .permitAll()
                 )
 
                 // 로그아웃
                 .logout(logout-> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/login")
                         .permitAll()
                 );
 
         return  http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder builder = http
+                .getSharedObject(AuthenticationManagerBuilder.class);
+
+        builder
+                .userDetailsService(loginService)
+                .passwordEncoder(passwordEncoder());
+
+        return builder.build();
     }
 
     /*public DefaultSecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -60,6 +84,5 @@ public class SecurityConfig {
                 );
             return http.build();
     }*/
-
 
 }

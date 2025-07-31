@@ -1,18 +1,37 @@
 window.onload = () => {
 
     const loginBtn = document.getElementById("login-btn");
-    loginBtn.addEventListener("click", () => {
-        login();
+
+    loginBtn.addEventListener("click", async (event) => {
+        event.preventDefault()
+        await login();
     })
+
 }
 
 async function login() {
     const param = {
-        id : document.getElementById("id"),
-        password: document.getElementById("password")
+        username : document.getElementById("username").value,
+        password: document.getElementById("password").value
     }
 
-    const data = await fetchCommon("/login", "POST", param);
+    try {
+        const response = await fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams(param),
+            credentials: 'include'
+        });
 
-    console.log(data);
+        if (response.ok)
+            window.location.href = '/index';
+        else
+           throw new Error(`HTTP Error: ${response.status}`)
+
+    } catch(err) {
+        console.error("Fetch Error: ", err.message)
+    }
+
 }

@@ -10,7 +10,7 @@ public class UserRequest {
 
     @Schema(description = "아이디", example = "lee")
     @NotBlank(message = "아이디는 필수입니다.")
-    private String id;
+    private String username;
 
     @Schema(description = "이메일", example = "lee@gmail.com")
     @NotBlank(message = "이메일은 필수입니다.")

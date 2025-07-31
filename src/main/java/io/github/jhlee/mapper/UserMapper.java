@@ -10,9 +10,9 @@ public interface UserMapper {
 
     int create(User user);
     List<User> readList();
-    User read(String id);
-    int findById(String id);
+    User read(String username);
+    User findById(String username);
     int update(User user);
-    int delete(String id);
+    int delete(String username);
 
 }

@@ -24,8 +24,8 @@ public class UserService {
     public int create(UserRequest request) {
         log.info("create; request={}", request);
 
-        int isExistId = userMapper.findById(request.getId());
-        if (isExistId > 0) {
+        User existId = userMapper.findById(request.getUsername());
+        if (existId != null) {
             throw new IllegalArgumentException("중복된 id가 존재합니다.");
         }
 

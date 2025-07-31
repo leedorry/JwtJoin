@@ -1,4 +1,4 @@
-package io.github.jhlee.controller;
+package io.github.jhlee.controller.view;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

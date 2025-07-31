@@ -6,13 +6,13 @@
 <mapper namespace="io.github.jhlee.mapper.UserMapper">
 
     <insert id="create" parameterType="User">
-        INSERT INTO user ( id
+        INSERT INTO user ( username
                     , email
                     , password
                     , name
                     <if test="age != 0">, age</if>
         ) VALUES (
-                      #{id}
+                      #{username}
                     , #{email}
                     , #{password}
                     , #{name}
@@ -21,20 +21,20 @@
     </insert>
 
     <select id="readList" resultType="User">
-        SELECT id, email, name, age
+        SELECT username, email, name, age, role
         FROM user
     </select>
 
     <select id="read" parameterType="String" resultType="User">
-        SELECT id, password, email, name, age
+        SELECT username, password, email, name, age, role
         FROM user
-        WHERE id = #{id}
+        WHERE username = #{username}
     </select>
 
-    <select id="findById" parameterType="String" resultType="Integer">
-        SELECT COUNT(id)
+    <select id="findById" parameterType="String" resultType="User">
+        SELECT username, password, role
         FROM user
-        WHERE id = #{id}
+        WHERE username = #{username}
     </select>
 
     <update id="update" parameterType="User">
@@ -44,11 +44,12 @@
             <if test="password != null">, password = #{password}</if>
             <if test="name != null">, name = #{name}</if>
             <if test="age != null">, age = #{age}</if>
+        WHERE username = #{username}
     </update>
 
     <delete id="delete" parameterType="String">
         DELETE FROM user
-        WHERE id = #{id}
+        WHERE username = #{username}
     </delete>
 
 </mapper>
