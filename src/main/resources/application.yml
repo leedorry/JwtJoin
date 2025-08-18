@@ -2,6 +2,30 @@ server:
   servlet:
     context-path: /
 
+spring:
+  application:
+    name: jwtJoin
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jwt_join
+    username: root
+    password: root
+
+  mvc:
+    view:
+      prefix: /resources/templates/
+      suffix: .html
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
+mybatis:
+  type-aliases-package: io.github.jhlee.model
+  mapper-locations: classpath:mybatis/*.xml
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
@@ -14,3 +38,13 @@ springdoc:
     - /api/**
   default-produces-media-type: application/json
   default-consumes-media-type: application/json
+
+jwt:
+  secret: f45c5b6ee675cb4e929bce535734e5daed272aff48c9c0708bd3ad34f82f401c
+  access-token-expire-time: 3600000    #1시간
+  refresh-token-expire-time: 604800000 # 7일
+
+logging:
+  level:
+    org:
+      springframework: info
